@@ -10,7 +10,7 @@ public class StubWeakPasswordChecker implements WeakPasswordChecker {
 
     @Override
     public boolean checkPasswordWeak(String pw) {
-        return true;
+        return weak;
     }
 
 }
