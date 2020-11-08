@@ -1,14 +1,15 @@
 package com.example.demo.chap07;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
 public class UserRegister {
     
     private WeakPasswordChecker passwordChecker;
     private MemoryUserRepository userRepository;
-
-    public UserRegister(WeakPasswordChecker passwordChecker, MemoryUserRepository userRepository) {
-        this.passwordChecker = passwordChecker;
-        this.userRepository = userRepository;
-    }
+    private EmailNotifier emailNotifier;
 
     public void register(String id, String pw, String email) {
         if (passwordChecker.checkPasswordWeak(pw)) {
@@ -20,7 +21,9 @@ public class UserRegister {
             throw new DupIdException();
         }
         
-        userRepository.save(new User("id", "pw", "email"));
+        userRepository.save(new User(id, pw, email));
+
+        emailNotifier.sendRegisterEmail(email);
     }
 
 }
