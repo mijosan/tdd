@@ -1,0 +1,20 @@
+package com.example.demo.supplement.mockito;
+
+import static org.mockito.Mockito.mock;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+public class GameTest {
+    
+    @DisplayName("모의 객체의 메서드가 불렸는지 여부를 검증하는 코드")
+    @Test
+    void init() {
+         GameNumGen genMock = mock(GameNumGen.class);
+         Game game = new Game(genMock);
+         game.init(GameLevel.EASY);
+
+         then(genMock).should().generate(GameLevel.EASY);
+    }
+
+}

@@ -5,13 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 public class GameGenMockTest {
+
+    @Mock
+    GameNumGen genMock;
     
+    @DisplayName("애노테이션을 이용한 모의 객체를 이용")
     @Test
-    void mockThrowTest() {
-        GameNumGen genMock = mock(GameNumGen.class);
+    void mockThrowTest() { 
         when(genMock.generate(null)).thenThrow(IllegalArgumentException.class);
 
         assertThrows(IllegalArgumentException.class, 
