@@ -13,7 +13,6 @@ public class GameTest {
          GameNumGen genMock = mock(GameNumGen.class);
          Game game = new Game(genMock);
          game.init(GameLevel.EASY);
-
          then(genMock).should().generate(GameLevel.EASY);
     }
 
